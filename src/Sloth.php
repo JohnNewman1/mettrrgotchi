@@ -37,6 +37,7 @@ class Sloth
 
     public function eat($food)
     {
+        $this->hunger += 2;
         return $this->name . ' eats a ' . $food;
     }
 }

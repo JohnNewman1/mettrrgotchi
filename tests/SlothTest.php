@@ -15,6 +15,7 @@ class SlothTest extends TestCase
         $name = 'Roger';
         $this->sloth->setName($name);
     }
+
     /** @test */
     public function sloth_has_age()
     {
@@ -24,13 +25,14 @@ class SlothTest extends TestCase
 
         $this->assertSame(1, $slothAge->getAge());
     }
+
     /** @test */
     public function sloth_name_can_be_set()
     {
         $this->assertSame('Roger', $this->sloth->getName());
     }
-    /** @test */
 
+    /** @test */
     public function sloth_hunger_is_five()
     {
         $this->assertSame(5, $this->sloth->getHunger());
@@ -39,5 +41,12 @@ class SlothTest extends TestCase
     public function sloth_returns_string_when_eat()
     {
         $this->assertSame('Roger eats a banana', $this->sloth->eat('banana'));
+    }
+
+    /** @test */
+    public function sloth_food_increases_hunger_by_two()
+    {
+        $this->sloth->eat('sock');
+        $this->assertSame(7, $this->sloth->getHunger());
     }
 }
