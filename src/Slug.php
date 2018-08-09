@@ -72,7 +72,6 @@ class Slug
     }
 
     /**
-     * Getter for hunger property
      * @return int hunger level
      */
     public function getHunger()
