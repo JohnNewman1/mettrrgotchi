@@ -10,25 +10,34 @@ class SlothTest extends TestCase
 {
     private $sloth;
     protected function setUp()
-   {
-       $this->sloth = new Sloth;
-   }
+    {
+        $this->sloth = new Sloth;
+        $name = 'Roger';
+        $this->sloth->setName($name);
+    }
     /** @test */
     public function sloth_has_age()
-  {
+    {
         $now = new \DateTime();
         $yesterday = $now->sub(new \DateInterval('P1D'));
         $slothAge = new Sloth($yesterday);
 
         $this->assertSame(1, $slothAge->getAge());
-  }
+    }
     /** @test */
-
     public function sloth_name_can_be_set()
     {
-        $name = 'Roger';
-        $this->sloth->setName($name);
+        $this->assertSame('Roger', $this->sloth->getName());
+    }
+    /** @test */
 
-        $this->assertSame($name, $this->sloth->getName());
+    public function sloth_hunger_is_five()
+    {
+        $this->assertSame(5, $this->sloth->getHunger());
+    }
+    /** @test */
+    public function sloth_returns_string_when_eat()
+    {
+        $this->assertSame('Roger eats a banana', $this->sloth->eat('banana'));
     }
 }

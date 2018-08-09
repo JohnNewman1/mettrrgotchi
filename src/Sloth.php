@@ -8,6 +8,7 @@ class Sloth
 {
     private $dob;
     private $name;
+    private $hunger = 5;
 
     public function __construct($date = null)
     {
@@ -27,5 +28,15 @@ class Sloth
     public function getName()
     {
         return $this->name;
+    }
+
+    public function getHunger()
+    {
+        return $this->hunger;
+    }
+
+    public function eat($food)
+    {
+        return $this->name . ' eats a ' . $food;
     }
 }

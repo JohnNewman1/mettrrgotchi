@@ -91,9 +91,8 @@ class Slug
         if ($this->hunger < 5) {
             $this->hunger = 9;
             return self::POO;
-        } else {
-            return '';
         }
+            return '';
     }
 
     public function slime()
