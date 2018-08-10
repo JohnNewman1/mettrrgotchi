@@ -3,16 +3,19 @@
 namespace Src;
 
 use DateTime;
+use Src\RandomGenerator;
 
 class Sloth
 {
     private $dob;
     private $name;
     private $hunger = 5;
+    private $generator;
 
-    public function __construct($date = null)
+    public function __construct($date = null, $randomGeneratorClass = null)
     {
-        $this->dob = $date ?? new DateTime();
+        $this->dob = $date ?? new DateTime;
+        $this->generator = $randomGeneratorClass ?? new RandomGenerator;
     }
 
     public function getAge()
@@ -37,7 +40,12 @@ class Sloth
 
     public function eat($food)
     {
-        $this->hunger += 2;
+        $this->hunger += $this->generator->generate(4);
         return $this->name . ' eats a ' . $food;
+    }
+
+    public function poop()
+    {
+        $this->hunger -= 3;
     }
 }

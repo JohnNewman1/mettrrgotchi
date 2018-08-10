@@ -3,6 +3,7 @@
 namespace Tests;
 
 use Src\Sloth;
+use Src\RandomGenerator;
 
 use PHPUnit\Framework\TestCase;
 
@@ -11,7 +12,9 @@ class SlothTest extends TestCase
     private $sloth;
     protected function setUp()
     {
-        $this->sloth = new Sloth;
+        $mock = \Mockery::mock('RandomGenerator');
+        $mock->shouldReceive('generate')->andReturn(2);
+        $this->sloth = new Sloth(null, $mock);
         $name = 'Roger';
         $this->sloth->setName($name);
     }
@@ -49,4 +52,14 @@ class SlothTest extends TestCase
         $this->sloth->eat('sock');
         $this->assertSame(7, $this->sloth->getHunger());
     }
+
+    /** @test */
+    public function poop_reduces_hunger_by_three()
+    {
+        $this->sloth->poop();
+        $this->assertSame(2, $this->sloth->getHunger());
+    }
+
+    /** @test */
+
 }
